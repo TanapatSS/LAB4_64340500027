@@ -1,0 +1,2 @@
+D:/git/LAB4_64340500027/STM32_LAB4/DSP/Include/dsp/svm_functions.h:65:27:arm_exponent_f32	24	static
+../DSP/Source/SVMFunctions/arm_svm_polynomial_predict_f32.c:462:6:arm_svm_polynomial_predict_f32	56	static
