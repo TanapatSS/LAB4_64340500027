@@ -52,7 +52,8 @@ float position = 0;
 float setposition = 0;
 float Vfeedback = 0;
 float e = 0;
-
+float setP = 0;
+float finalP = 0;
 float counterPosition = 0;
 /* USER CODE END PV */
 
@@ -116,9 +117,9 @@ int main(void)
   HAL_TIM_Base_Start(&htim3);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 
-  PID.Kp = 6.8;
-  PID.Ki = 0.0001;
-  PID.Kd = 1;
+  PID.Kp = 47;
+  PID.Ki = 0.000000001;
+  PID.Kd = 20;
   arm_pid_init_f32(&PID, 0);
   /* USER CODE END 2 */
 
@@ -134,8 +135,12 @@ int main(void)
 	{
 		timestep = HAL_GetTick() + 10;
 
+		setposition = setP+10;
+
 		counterPosition = __HAL_TIM_GET_COUNTER(&htim2);
-		position = (counterPosition*36000)/307200;
+		position = (counterPosition*36020)/307200;
+
+		finalP = position-10;
 
 		Vfeedback = arm_pid_f32(&PID, setposition - position);
 
