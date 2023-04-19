@@ -116,9 +116,9 @@ int main(void)
   HAL_TIM_Base_Start(&htim3);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 
-  PID.Kp = 1;
-  PID.Ki = 0.00001;
-  PID.Kd = 0.1;
+  PID.Kp = 6.8;
+  PID.Ki = 0.0001;
+  PID.Kd = 1;
   arm_pid_init_f32(&PID, 0);
   /* USER CODE END 2 */
 
@@ -146,9 +146,9 @@ int main(void)
 		}
 		if(Vfeedback < -100)
 		{
-			Vfeedback = -100;
+			Vfeedback = 100;
 		}
-		if(!(e < 1 && e >-1))
+		if(!(e < 1 && e > -1))
 		{
 			if(e > 0)
 			{
